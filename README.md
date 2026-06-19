@@ -57,4 +57,14 @@ Focusing only on Paid Conversion Rate may create unintended negative consequence
 * User engagement may decline even if conversions initially increase.
 * Certain customer segments may perform worse despite overall improvements.
 
+## KPI Tree Summary
+
+The North Star Metric for this experiment is Paid Conversion Rate. This metric is influenced by four primary business drivers: Acquisition, Activation, Engagement, and Monetization.
+
+Acquisition measures the ability to attract users to the product through Landing Page Visit Rate and Traffic Quality. Activation evaluates whether users successfully begin and complete onboarding through Trial Start Rate and Onboarding Completion Rate.
+
+Engagement measures how actively users interact with the product using Engagement Score and Days to Convert. Monetization evaluates the financial impact through Average Revenue Per User and Average Revenue Per Converted User.
+
+To ensure improvements in conversion do not create unintended negative effects, guardrail metrics including Refund Rate, Support Ticket Rate, and Segment-Level Performance are monitored throughout the experiment.
+
 For this reason, Paid Conversion Rate must be evaluated together with guardrail metrics such as Refund Rate, Support Ticket Rate, Engagement Score, and Days to Convert before making a final recommendation.
