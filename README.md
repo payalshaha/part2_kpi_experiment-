@@ -68,3 +68,121 @@ Engagement measures how actively users interact with the product using Engagemen
 To ensure improvements in conversion do not create unintended negative effects, guardrail metrics including Refund Rate, Support Ticket Rate, and Segment-Level Performance are monitored throughout the experiment.
 
 For this reason, Paid Conversion Rate must be evaluated together with guardrail metrics such as Refund Rate, Support Ticket Rate, Engagement Score, and Days to Convert before making a final recommendation.
+
+## Data Cleaning and Preparation
+
+Before performing experiment analysis, the dataset was reviewed for data quality issues to ensure accurate and reliable results.
+
+### 1. Missing Values Check
+
+A missing value assessment was performed across all columns.
+
+Findings:
+
+| Column           | Missing Values |
+| ---------------- | -------------: |
+| device_type      |             18 |
+| traffic_source   |             24 |
+| engagement_score |             14 |
+| days_to_convert  |           1336 |
+
+Handling:
+
+* Missing values in `device_type` were replaced with **"Unknown"** for segment analysis.
+* Missing values in `traffic_source` were replaced with **"Unknown"**.
+* Missing values in `engagement_score` were retained and excluded from average calculations.
+* Missing values in `days_to_convert` were expected because most users did not convert to paid status. These values were not treated as data quality issues and were excluded from conversion-time calculations.
+
+### 2. Group Count Validation
+
+The distribution of users across experiment groups was checked to confirm a balanced experiment design.
+
+| Group     | User Count |
+| --------- | ---------: |
+| Control   |        693 |
+| Treatment |        715 |
+
+The group sizes were reasonably balanced and suitable for comparison.
+
+### 3. Duplicate User ID Check
+
+A duplicate check was performed on the `user_id` field.
+
+Findings:
+
+* 8 duplicate user IDs were identified.
+
+Handling:
+
+* Duplicate records were investigated and flagged for review.
+* User-level analyses were performed carefully to avoid potential double-counting effects.
+
+### 4. Invalid Binary Value Check
+
+The following binary fields were validated:
+
+* visited_landing_page
+* started_trial
+* completed_onboarding
+* converted_to_paid
+* refund_requested
+
+Findings:
+
+* All values were valid.
+* No values outside the expected range of 0 and 1 were detected.
+
+### 5. Revenue Outlier Check
+Revenue values were examined to identify potential outliers.
+
+The revenue distribution was highly zero-inflated because only users who converted to a paid subscription generated revenue. As a result, more than 75% of the revenue observations were equal to zero, causing both the first quartile (Q1) and third quartile (Q3) to be calculated as zero.
+
+Q1 = 0
+Q3 = 0
+IQR = Q3 − Q1 = 0
+
+Because the Interquartile Range (IQR) was zero, the traditional IQR-based outlier detection method was not informative for this dataset. Therefore, a Box & Whisker chart and descriptive review of the revenue values were used to identify unusually large revenue observations.
+
+High revenue values were retained in the dataset because they represent legitimate customer purchases and business outcomes rather than data entry errors or invalid records.
+
+**Conclusion:** No revenue records were removed from the analysis.
+
+### 6. Segment Distribution Check
+
+Segment distributions were compared between Control and Treatment groups.
+
+Region Distribution:
+
+| Region | Control | Treatment |
+| ------ | ------: | --------: |
+| North  |     203 |       180 |
+| South  |     184 |       184 |
+| East   |     158 |       172 |
+| West   |     148 |       179 |
+
+Additional checks were also performed for:
+
+* Device Type
+* Traffic Source
+* Plan Type
+
+The distributions were reasonably balanced across experiment groups, indicating that randomization was successful and no major segment bias was detected.
+
+### Summary
+
+The dataset was determined to be suitable for experiment analysis after addressing missing values, validating binary fields, reviewing duplicates, examining revenue outliers, and confirming balanced segment distributions across Control and Treatment groups.
+
+## Data Cleaning and Preparation
+
+The dataset was reviewed before analysis to ensure data quality and reliability.
+
+The following checks were performed:
+
+1. Missing values were identified using COUNTBLANK() and reviewed for all columns.
+2. Group counts were verified using Pivot Tables to confirm a balanced Control and Treatment distribution.
+3. Duplicate User IDs were detected using COUNTIF() and flagged for review.
+4. Binary variables were validated to ensure values contained only 0 or 1.
+5. Revenue outliers were identified using the IQR (Interquartile Range) method .
+6. Segment distributions across Region, Device Type, and Traffic Source were compared between Control and Treatment groups using Pivot Tables.
+
+The dataset was determined to be suitable for experiment analysis after completing these validation checks.
