@@ -186,3 +186,129 @@ The following checks were performed:
 6. Segment distributions across Region, Device Type, and Traffic Source were compared between Control and Treatment groups using Pivot Tables.
 
 The dataset was determined to be suitable for experiment analysis after completing these validation checks.
+
+
+# Guardrail Metric Evaluation
+
+While the Treatment group demonstrated a statistically significant improvement in Paid Conversion Rate, additional guardrail metrics were evaluated to ensure that the increase in conversions does not negatively impact overall business performance.
+
+## 1. Refund Rate
+
+| Group     | Refund Rate |
+| --------- | ----------: |
+| Control   |       0.00% |
+| Treatment |       0.42% |
+
+### Evaluation
+
+The Treatment group shows a slight increase in refund requests compared to the Control group.
+
+### Risk Assessment
+
+Low Risk
+
+Although refunds increased, the overall refund rate remains below 1% and is not currently large enough to outweigh the conversion gains. However, this metric should continue to be monitored after launch.
+
+---
+
+## 2. Support Ticket Rate
+
+| Group     | Support Ticket Rate |
+| --------- | ------------------: |
+| Control   |              9.23% |
+| Treatment |              16.08% |
+
+### Evaluation
+
+The Treatment group generated substantially more support tickets than the Control group.
+
+### Risk Assessment
+
+Moderate Risk
+
+The increase in support tickets suggests that some users may be experiencing confusion, onboarding friction, or technical issues with the new experience. A higher support workload may increase operational costs and negatively affect customer satisfaction.
+
+This is the most significant guardrail concern identified in the experiment.
+
+---
+
+## 3. Average Days to Convert
+
+| Group     | Average Days to Convert |
+| --------- | ----------------------: |
+| Control   |               8.86 Days |
+| Treatment |               6.40 Days |
+
+### Evaluation
+
+Users in the Treatment group converted approximately 2.5 days faster than users in the Control group.
+
+### Risk Assessment
+
+Positive Outcome
+
+Faster conversion indicates a more effective onboarding experience and allows the business to generate revenue sooner. No risk was identified for this metric.
+
+---
+
+## 4. Average Engagement Score
+
+| Group     | Average Engagement Score |
+| --------- | -----------------------: |
+| Control   |                    57.03 |
+| Treatment |                    62.93 |
+
+### Evaluation
+
+The Treatment group achieved a higher engagement score than the Control group.
+
+### Risk Assessment
+
+Positive Outcome
+
+Higher engagement suggests that users interact more actively with the product after onboarding. Increased engagement is generally associated with stronger retention and long-term customer value.
+
+---
+
+## 5. Revenue Quality
+
+| Group     | Average Revenue Per User | Average Revenue Per Converted User |
+| --------- | -----------------------: | ---------------------------------: |
+| Control   |                    51.75 |                            1630.10 |
+| Treatment |                    53.88 |                             770.41 |
+
+### Evaluation
+
+The Treatment group generated slightly higher revenue per user, but lower revenue per converted user.
+
+### Risk Assessment
+
+Moderate Risk
+
+The campaign successfully converts more users, but the average spending per converted customer is lower. This may indicate that additional lower-value customers are being acquired.
+
+Further monitoring is recommended to determine whether these users generate long-term value.
+
+---
+
+## Overall Guardrail Assessment
+
+### Positive Findings
+
+* Paid Conversion Rate increased significantly.
+* Engagement Score improved.
+* Days to Convert decreased.
+* Revenue Per User increased slightly.
+
+### Risks Identified
+
+* Support Ticket Rate increased substantially.
+* Refund Rate increased slightly.
+* Revenue Per Converted User decreased.
+
+### Conclusion
+
+The Treatment campaign delivers strong conversion improvements and positive engagement outcomes. However, the increase in support tickets and decline in revenue per converted customer indicate potential operational and revenue-quality risks.
+
+These risks are not severe enough to offset the conversion gains, but they should be monitored closely if the Treatment experience is launched.
+
