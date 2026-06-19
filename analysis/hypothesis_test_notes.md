@@ -132,4 +132,17 @@ Result: Reject H₀
 
 The Treatment group demonstrates a statistically significant improvement in Paid Conversion Rate.
 
+
+### Task 7: Perform Hypothesis or A/B Test Analysis
+Test Method: Two-Sample t-Test Assuming Unequal Variances
+
+Mean Conversion Rate (Control): 3.17%
+Mean Conversion Rate (Treatment): 6.99%
+
+P(T<=t) one-tail = 0.00058
+
+Since the p-value is less than the significance level of 0.05, the null hypothesis is rejected.
+
+The Treatment group shows a statistically significant improvement in Paid Conversion Rate compared to the Control group.
+
 The experiment provides strong evidence that the new onboarding campaign improves user conversion performance and should be considered for launch, subject to guardrail metric evaluation.
