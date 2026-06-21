@@ -159,10 +159,10 @@ Findings:
 
 | Column           | Missing Values |
 | ---------------- | -------------: |
-| device_type      |              9 |
-| traffic_source   |             18 |
-| engagement_score |              8 |
-| days_to_convert  |            657 |
+| device_type      |             18 |
+| traffic_source   |             24 |
+| engagement_score |             14 |
+| days_to_convert  |           1336 |
 
 Handling:
 
