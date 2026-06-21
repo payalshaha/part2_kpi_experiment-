@@ -1,3 +1,4 @@
+
 ## Business Problem Statement
 
 The company has introduced a new onboarding and activation campaign designed to improve user conversion and early engagement for its subscription-based digital product. To evaluate the effectiveness of the new experience, users were randomly assigned to either a Control group (existing onboarding experience) or a Treatment group (new onboarding campaign).
@@ -9,6 +10,54 @@ The primary metric expected to improve is the **Paid Conversion Rate**, which me
 Before making a launch decision, several risks must be monitored. These include increased refund requests, higher support ticket volumes, lower user engagement quality, slower conversion times, and poor performance within specific user segments. An improvement in conversion alone may not justify a full rollout if it negatively affects the overall user experience or business performance.
 
 A recommendation will only be made after analyzing experiment results, comparing Control and Treatment performance, evaluating guardrail metrics, and conducting statistical hypothesis testing. The evidence must demonstrate that the Treatment group delivers a meaningful and statistically significant improvement in the primary success metric without creating unacceptable business risks.
+
+## Business Context
+
+A subscription-based digital product company launched a new onboarding and activation campaign to improve user conversion and early engagement. Users were randomly assigned to one of two groups:
+
+* **Control Group:** Existing onboarding experience
+* **Treatment Group:** New onboarding experience
+
+The objective of this experiment was to determine whether the new onboarding campaign should be launched to all users based on its impact on conversion, engagement, and overall business performance.
+
+# Dataset Description
+
+The dataset contains user-level experiment data collected during the A/B test.
+
+### Key Variables
+
+* user_id
+* group (Control/Treatment)
+* landing_page_visit
+* trial_started
+* onboarding_completed
+* converted_to_paid
+* revenue_30d
+* refund_requested
+* support_ticket
+* engagement_score
+* days_to_convert
+* region
+* device_type
+* traffic_source
+* plan_type
+
+The dataset was cleaned and validated before analysis.
+
+### Data Validation Performed
+
+* Missing value check
+* Group count verification
+* Duplicate User ID check
+* Invalid binary value check
+* Revenue outlier review
+* Segment distribution comparison
+
+Revenue was highly zero-inflated because only converted users generated revenue. High revenue values were retained because they represented legitimate customer purchases rather than data errors.
+
+---
+
+
 
 ## North Star Metric: Paid Conversion Rate
 
@@ -68,6 +117,35 @@ Engagement measures how actively users interact with the product using Engagemen
 To ensure improvements in conversion do not create unintended negative effects, guardrail metrics including Refund Rate, Support Ticket Rate, and Segment-Level Performance are monitored throughout the experiment.
 
 For this reason, Paid Conversion Rate must be evaluated together with guardrail metrics such as Refund Rate, Support Ticket Rate, Engagement Score, and Days to Convert before making a final recommendation.
+
+# Experiment Analysis Approach
+
+The experiment compared Control and Treatment groups across key business metrics.
+
+### Metrics Analyzed
+
+* User Count
+* Landing Page Visit Rate
+* Trial Start Rate
+* Onboarding Completion Rate
+* Paid Conversion Rate
+* Average Revenue Per User
+* Average Revenue Per Converted User
+* Refund Rate
+* Support Ticket Rate
+* Engagement Score
+* Average Days to Convert
+
+### Segment Analysis
+
+The following dimensions were analyzed:
+
+* Region
+* Device Type
+* Traffic Source
+* Plan Type
+
+The objective was to identify overall treatment performance and detect any segment-level risks.
 
 ## Data Cleaning and Preparation
 
@@ -187,6 +265,45 @@ The following checks were performed:
 
 The dataset was determined to be suitable for experiment analysis after completing these validation checks.
 
+# Hypothesis Test Summary
+
+## Business Question
+
+Does the Treatment onboarding experience significantly improve Paid Conversion Rate compared to the Control experience?
+
+### Null Hypothesis (H₀)
+
+Treatment Conversion Rate ≤ Control Conversion Rate
+
+### Alternative Hypothesis (H₁)
+
+Treatment Conversion Rate > Control Conversion Rate
+
+### Test Used
+
+Two-Sample t-Test Assuming Unequal Variances
+
+### Significance Level
+
+α = 0.05
+
+### Results
+
+| Metric                    |    Value |
+| ------------------------- | -------: |
+| Control Conversion Rate   |    3.17% |
+| Treatment Conversion Rate |    6.99% |
+| One-Tailed P-Value        | 0.000533 |
+
+### Interpretation
+
+Since:
+
+0.000533 < 0.05
+
+The null hypothesis was rejected.
+
+The Treatment group demonstrated a statistically significant improvement in Paid Conversion Rate.
 
 # Guardrail Metric Evaluation
 
@@ -309,6 +426,53 @@ Further monitoring is recommended to determine whether these users generate long
 ### Conclusion
 
 The Treatment campaign delivers strong conversion improvements and positive engagement outcomes. However, the increase in support tickets and decline in revenue per converted customer indicate potential operational and revenue-quality risks.
+
+# Final Recommendation
+
+## Launch
+
+The Treatment onboarding experience is recommended for launch.
+
+### Supporting Evidence
+
+* Paid Conversion Rate increased from 3.17% to 6.99%
+* Statistical significance confirmed (p-value = 0.000533)
+* Engagement Score improved
+* Users converted faster
+* Revenue per user increased slightly
+
+Although Support Ticket Rate increased, the overall business impact remains positive and the conversion gains outweigh the identified risks.
+
+---
+
+# Assumptions and Limitations
+
+## Assumptions
+
+* Users were randomly assigned to experiment groups.
+* Experiment data accurately reflects user behavior.
+* Revenue values represent valid customer purchases.
+
+## Limitations
+
+* Analysis focuses on short-term outcomes.
+* Long-term retention was not measured.
+* Customer Lifetime Value (CLV) was unavailable.
+* Results may vary after full-scale deployment.
+
+# Screenshots Included
+
+### summary_metrics.png
+
+Control vs Treatment experiment summary table.
+
+### hypothesis_test_output.png
+
+Statistical test output and p-value evidence.
+
+### kpi_tree_preview.png
+
+Preview of the KPI Tree used in the analysis.
 
 These risks are not severe enough to offset the conversion gains, but they should be monitored closely if the Treatment experience is launched.
 
